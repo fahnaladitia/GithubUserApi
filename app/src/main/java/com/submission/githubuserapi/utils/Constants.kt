@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
 import com.submission.githubuserapi.BuildConfig.GITHUB_API_KEY
-import com.submission.githubuserapi.R
 
 object Constants {
     const val BASE_URL = "https://api.github.com/"

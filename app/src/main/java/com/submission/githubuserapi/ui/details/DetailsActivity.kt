@@ -14,7 +14,6 @@ import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.databinding.ActivityDetailsBinding
-import com.submission.githubuserapi.utils.Constants
 
 class DetailsActivity : AppCompatActivity() {
 

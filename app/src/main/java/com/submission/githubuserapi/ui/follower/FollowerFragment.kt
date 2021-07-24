@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.remote.model.User
 import com.submission.githubuserapi.databinding.FragmentFollowBinding
-import com.submission.githubuserapi.ui.details.DetailsActivity
 import com.submission.githubuserapi.ui.ListAdapter
+import com.submission.githubuserapi.ui.details.DetailsActivity
 
 class FollowerFragment : Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowerViewModel
