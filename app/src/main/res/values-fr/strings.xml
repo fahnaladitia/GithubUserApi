@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubUserApi</string>
+    <string name="search">Rechercher</string>
+    <string name="home">Accueil</string>
+    <string name="follower">Abonné</string>
+    <string name="following">Suivant</string>
+    <string name="repository">Référentiel</string>
+</resources>

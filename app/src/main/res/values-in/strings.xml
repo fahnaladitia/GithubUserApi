@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubUserApi</string>
+    <string name="search">Cari</string>
+    <string name="home">Beranda</string>
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="repository">Penyimpanan</string>
+</resources>
