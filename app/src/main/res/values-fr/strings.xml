@@ -6,4 +6,6 @@
     <string name="follower">Abonné</string>
     <string name="following">Suivant</string>
     <string name="repository">Référentiel</string>
+    <string name="background">Contexte</string>
+    <string name="image_user">Utilisateur de l\'image</string>
 </resources>

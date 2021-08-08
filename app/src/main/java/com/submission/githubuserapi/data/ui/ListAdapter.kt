@@ -1,6 +1,6 @@
-package com.submission.githubuserapi.ui
+package com.submission.githubuserapi.data.ui
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +12,14 @@ import com.submission.githubuserapi.databinding.ItemUserBinding
 import com.submission.githubuserapi.utils.Constants.hasInternetConnection
 import com.submission.githubuserapi.utils.Constants.toast
 
-class ListAdapter(private val context: Context) :
+class ListAdapter :
     RecyclerView.Adapter<ListAdapter.HomeViewHolder>() {
 
-    private val list = ArrayList<User>()
+    private var list: List<User> = arrayListOf()
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
@@ -27,9 +27,9 @@ class ListAdapter(private val context: Context) :
         fun onItemClicked(user: User)
     }
 
-    fun setList(user: ArrayList<User>) {
-        list.clear()
-        list.addAll(user)
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(list: List<User>?) {
+        this.list = list ?: listOf()
         notifyDataSetChanged()
     }
 
@@ -45,10 +45,10 @@ class ListAdapter(private val context: Context) :
                     .into(ivUser)
                 tvUsername.text = user.login
                 root.setOnClickListener {
-                    if (hasInternetConnection(context)) {
+                    if (hasInternetConnection(itemView.context)) {
                         onItemClickCallback?.onItemClicked(user)
                     } else {
-                        toast(context, "No Internet Connection")
+                        toast(itemView.context, "No Internet Connection")
                     }
                 }
             }
@@ -62,7 +62,6 @@ class ListAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(list[position])
-
     }
 
     override fun getItemCount(): Int = list.size

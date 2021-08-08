@@ -4,46 +4,46 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.remote.model.User
+import com.submission.githubuserapi.data.ui.BaseFragment
+import com.submission.githubuserapi.data.ui.ListAdapter
 import com.submission.githubuserapi.databinding.FragmentHomeBinding
-import com.submission.githubuserapi.ui.ListAdapter
 import com.submission.githubuserapi.ui.details.DetailsActivity
+import com.submission.githubuserapi.utils.toGone
+import com.submission.githubuserapi.utils.toVisible
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment(R.layout.fragment_home) {
     private lateinit var viewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
+    private val adapter = ListAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentHomeBinding.bind(view)
-        val adapter = ListAdapter(requireContext())
+        binding = FragmentHomeBinding.bind(view)
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(HomeViewModel::class.java)
         setAdapter(adapter)
 
-
-        viewModel.getSearchUsers().observe(viewLifecycleOwner) {
-            if (it != null) {
-                adapter.setList(it)
-                showLoading(false)
+        viewModel.getSearchUsers().observe(viewLifecycleOwner) { response ->
+            if (response != null) {
+                adapter.setList(response)
+                binding.progressBar.toGone()
             }
         }
 
 
     }
 
-    private fun setAdapter(adapter: ListAdapter) {
+    override fun setAdapter(adapter: ListAdapter) {
         binding.apply {
             rvUser.setHasFixedSize(true)
             rvUser.layoutManager = LinearLayoutManager(activity)
@@ -52,45 +52,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback {
                 override fun onItemClicked(user: User) {
-                    Intent(context, DetailsActivity::class.java).also {
-                        it.putExtra(DetailsActivity.EXTRA_USERNAME, user.login)
-                        startActivity(it)
+                    val i = Intent(context, DetailsActivity::class.java).apply {
+                        putExtra(DetailsActivity.EXTRA_USERNAME, user.login)
                     }
+                    startActivity(i)
                 }
             })
-
+            viewModel.setSearchQuery("a")
             var job: Job? = null
             searchView.addTextChangedListener { editable ->
                 job?.cancel()
                 job = MainScope().launch {
                     delay(500L)
                     editable?.let {
-                        searchUser()
+                        if (editable.toString().isNotEmpty()) {
+                            progressBar.toVisible()
+                            viewModel.setSearchQuery(editable.toString().replace(" ", ""))
+                        } else {
+                            viewModel.setSearchQuery("a")
+                        }
                     }
                 }
             }
         }
-        adapter.notifyDataSetChanged()
     }
 
-    private fun searchUser() {
-        binding.apply {
 
-            var query: String = searchView.text.toString().replace(" ", "")
-            if (query.isEmpty()) {
-                query = "a"
-            }
-            showLoading(true)
-            viewModel.setSearchQuery(query)
-
-        }
-    }
-
-    private fun showLoading(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
-    }
 }

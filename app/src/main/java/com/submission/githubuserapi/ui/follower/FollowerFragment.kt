@@ -3,47 +3,48 @@ package com.submission.githubuserapi.ui.follower
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.remote.model.User
+import com.submission.githubuserapi.data.ui.BaseFragment
+import com.submission.githubuserapi.data.ui.ListAdapter
 import com.submission.githubuserapi.databinding.FragmentFollowBinding
-import com.submission.githubuserapi.ui.ListAdapter
 import com.submission.githubuserapi.ui.details.DetailsActivity
+import com.submission.githubuserapi.utils.toGone
+import com.submission.githubuserapi.utils.toVisible
 
-class FollowerFragment : Fragment(R.layout.fragment_follow) {
+class FollowerFragment : BaseFragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowerViewModel
-    private var _binding: FragmentFollowBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFollowBinding
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentFollowBinding.bind(view)
-        val adapter = ListAdapter(requireContext())
+        binding = FragmentFollowBinding.bind(view)
+        val adapter = ListAdapter()
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(FollowerViewModel::class.java)
-        val username = activity?.intent?.getStringExtra(DetailsActivity.EXTRA_USERNAME).toString()
+        val username = requireActivity().intent.getStringExtra(DetailsActivity.EXTRA_USERNAME)!!
         setAdapter(adapter)
 
-        showLoading(true)
+        binding.progressBar.toVisible()
         viewModel.setFollower(username)
-        showLoading(false)
+        binding.progressBar.toGone()
         viewModel.getFollower().observe(viewLifecycleOwner) {
             if (it != null) {
-
                 adapter.setList(it)
             }
         }
+
+
     }
 
-    private fun setAdapter(adapter: ListAdapter) {
-
+    override fun setAdapter(adapter: ListAdapter) {
         binding.apply {
             rvUser.setHasFixedSize(true)
             rvUser.layoutManager = LinearLayoutManager(activity)
             rvUser.adapter = adapter
-
 
             adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback {
                 override fun onItemClicked(user: User) {
@@ -53,18 +54,6 @@ class FollowerFragment : Fragment(R.layout.fragment_follow) {
                     }
                 }
             })
-
-
         }
     }
-
-    private fun showLoading(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
-    }
-
-
 }

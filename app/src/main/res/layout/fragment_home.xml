@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.HomeFragment">
 
 
@@ -12,39 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@color/blue_500"
+        android:contentDescription="@string/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#FF364ca8"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:contentDescription="@string/background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp">
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <com.submission.githubuserapi.uicustom.EditText
-            android:hint="@string/search"
             android:id="@+id/search_view"
-            android:background="@drawable/search_bg"
             android:layout_width="match_parent"
             android:layout_height="38dp"
+            android:background="@drawable/search_bg"
             android:elevation="2dp"
-            android:maxLines="1"
+            android:hint="@string/search"
             android:inputType="text"
+            android:maxLines="1"
             android:paddingStart="16dp"
-            android:paddingEnd="10dp"/>
+            android:paddingEnd="10dp" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -52,11 +55,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
-        tools:listitem="@layout/item_user"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:listitem="@layout/item_user" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -64,10 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

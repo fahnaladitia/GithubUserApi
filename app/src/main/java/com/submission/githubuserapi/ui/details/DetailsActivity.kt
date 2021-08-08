@@ -3,7 +3,6 @@ package com.submission.githubuserapi.ui.details
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -14,12 +13,11 @@ import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.databinding.ActivityDetailsBinding
+import com.submission.githubuserapi.utils.toGone
+import com.submission.githubuserapi.utils.toVisible
 
 class DetailsActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_USERNAME = "extra_username"
-    }
 
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var viewModel: DetailsViewModel
@@ -33,16 +31,16 @@ class DetailsActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(DetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.NewInstanceFactory()).get(DetailsViewModel::class.java)
+
         if (username != null) {
             viewModel.setDataUser(username)
         }
         viewModel.getDataUser().observe(this) {
             if (it != null) {
                 binding.apply {
+                    progressBar.toVisible()
                     tvName.text = it.name
                     tvUsername.text = it.login
                     tvFollowers.text = getString(R.string.follower)
@@ -60,9 +58,9 @@ class DetailsActivity : AppCompatActivity() {
                                 e: GlideException?,
                                 model: Any?,
                                 target: Target<Drawable>?,
-                                isFirstResource: Boolean
+                                isFirstResource: Boolean,
                             ): Boolean {
-                                progressBar.isVisible = false
+                                progressBar.toGone()
                                 return false
                             }
 
@@ -71,17 +69,17 @@ class DetailsActivity : AppCompatActivity() {
                                 model: Any?,
                                 target: Target<Drawable>?,
                                 dataSource: DataSource?,
-                                isFirstResource: Boolean
+                                isFirstResource: Boolean,
                             ): Boolean {
-                                progressBar.isVisible = false
-                                tvName.isVisible = true
-                                tvUsername.isVisible = true
-                                tvFollowing.isVisible = true
-                                tvFollowers.isVisible = true
-                                tvFollowingValue.isVisible = true
-                                tvFollowersValue.isVisible = true
-                                tvRepoValue.isVisible = true
-                                tvRepo.isVisible = true
+                                progressBar.toGone()
+                                tvName.toVisible()
+                                tvUsername.toVisible()
+                                tvFollowing.toVisible()
+                                tvFollowers.toVisible()
+                                tvFollowingValue.toVisible()
+                                tvFollowersValue.toVisible()
+                                tvRepoValue.toVisible()
+                                tvRepo.toVisible()
                                 return false
                             }
                         }).into(ivProfile)
@@ -98,10 +96,16 @@ class DetailsActivity : AppCompatActivity() {
             tab.text = title[position]
         }.attach()
 
-        binding.toolbar.title = "$username"
+        binding.toolbar.title = username
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
+    }
+
+
+    companion object {
+        const val EXTRA_USERNAME = "extra_username"
     }
 }

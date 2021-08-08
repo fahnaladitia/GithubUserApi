@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class FollowerViewModel : ViewModel() {
 
-    val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
+    private val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
 
     fun setFollower(username: String) {
         RetrofitServer.apiInstance
@@ -20,7 +20,7 @@ class FollowerViewModel : ViewModel() {
             .enqueue(object : Callback<ArrayList<User>> {
                 override fun onResponse(
                     call: Call<ArrayList<User>>,
-                    response: Response<ArrayList<User>>
+                    response: Response<ArrayList<User>>,
                 ) {
                     if (response.isSuccessful) {
                         listUsers.value = response.body()!!

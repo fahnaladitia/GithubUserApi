@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
 
-    val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
+    private val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
 
 
     fun setSearchQuery(query: String) {

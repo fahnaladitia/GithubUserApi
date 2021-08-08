@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class FollowingViewModel : ViewModel() {
 
-    val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
+    private val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
 
     fun setFollowing(username: String) {
         RetrofitServer.apiInstance
