@@ -6,4 +6,6 @@
     <string name="follower">Pengikut</string>
     <string name="following">Mengikuti</string>
     <string name="repository">Penyimpanan</string>
+    <string name="background">Latar Belakang</string>
+    <string name="image_user">Pengguna Gambar</string>
 </resources>
