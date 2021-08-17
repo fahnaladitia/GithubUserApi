@@ -8,4 +8,5 @@
     <string name="repository">Repository</string>
     <string name="background">background</string>
     <string name="image_user">Image User</string>
+    <string name="favorite">Favorite</string>
 </resources>

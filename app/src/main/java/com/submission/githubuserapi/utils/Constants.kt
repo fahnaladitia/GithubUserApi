@@ -6,10 +6,9 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
 import com.submission.githubuserapi.BuildConfig.GITHUB_API_KEY
+import com.submission.githubuserapi.BuildConfig.GITHUB_API_LINK
 
 object Constants {
-    const val BASE_URL = "https://api.github.com/"
-    const val API_KEY = GITHUB_API_KEY
 
     fun toast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -42,4 +41,7 @@ object Constants {
         }
         return false
     }
+
+    const val BASE_URL = GITHUB_API_LINK
+    const val API_KEY = GITHUB_API_KEY
 }

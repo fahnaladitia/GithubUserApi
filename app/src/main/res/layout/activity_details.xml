@@ -9,23 +9,24 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:titleTextColor="@color/white"
-        app:theme="@style/ToolbarColoredBackArrow"
         android:background="@color/blue_500"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </androidx.appcompat.widget.Toolbar>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/tabs"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/blue_500"
-        android:contentDescription="@string/background" />
+        android:contentDescription="@string/background"
+        app:layout_constraintBottom_toTopOf="@id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile"
@@ -43,14 +44,14 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="gone"
-        android:layout_marginStart="16dp"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile"
         tools:text="fahnaladitia"
@@ -60,12 +61,12 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        android:textColor="@color/white"
-        app:layout_constraintHorizontal_bias="0"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username"
         tools:text="fahnaladitia"
@@ -120,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:gravity="center_vertical"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -168,6 +169,7 @@
         tools:text="Repository"
         tools:visibility="visible" />
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="0dp"
@@ -178,18 +180,29 @@
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
-        app:tabTextColor="@color/white"
-        app:tabIndicatorColor="@color/white"/>
+        app:tabIndicatorColor="@color/white"
+        app:tabTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="0dp"
-        android:background="#FF364ca8"
         android:layout_height="0dp"
+        android:background="#FF364ca8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/favorite_condition"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/favorite" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

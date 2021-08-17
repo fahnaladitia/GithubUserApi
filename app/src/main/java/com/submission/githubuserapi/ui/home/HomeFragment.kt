@@ -3,7 +3,8 @@ package com.submission.githubuserapi.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.widget.addTextChangedListener
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
@@ -19,10 +20,11 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class HomeFragment : BaseFragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment, Fragment(R.layout.fragment_home) {
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private val adapter = ListAdapter()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +35,31 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         ).get(HomeViewModel::class.java)
         setAdapter(adapter)
 
-        viewModel.getSearchUsers().observe(viewLifecycleOwner) { response ->
+        viewModel.setSearchQuery("a")
+        var job: Job? = null
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(text: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(text: String?): Boolean {
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(500L)
+                    text?.let {
+                        if (text.toString().isNotEmpty()) {
+                            binding.progressBar.toVisible()
+                            viewModel.setSearchQuery(text.toString().replace(" ", ""))
+                        } else {
+                            viewModel.setSearchQuery("a")
+                        }
+                    }
+                }
+                return false
+            }
+        })
+
+        viewModel.listUsers.observe(viewLifecycleOwner) { response ->
             if (response != null) {
                 adapter.setList(response)
                 binding.progressBar.toGone()
@@ -48,8 +74,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             rvUser.setHasFixedSize(true)
             rvUser.layoutManager = LinearLayoutManager(activity)
             rvUser.adapter = adapter
-
-
             adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback {
                 override fun onItemClicked(user: User) {
                     val i = Intent(context, DetailsActivity::class.java).apply {
@@ -58,24 +82,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     startActivity(i)
                 }
             })
-            viewModel.setSearchQuery("a")
-            var job: Job? = null
-            searchView.addTextChangedListener { editable ->
-                job?.cancel()
-                job = MainScope().launch {
-                    delay(500L)
-                    editable?.let {
-                        if (editable.toString().isNotEmpty()) {
-                            progressBar.toVisible()
-                            viewModel.setSearchQuery(editable.toString().replace(" ", ""))
-                        } else {
-                            viewModel.setSearchQuery("a")
-                        }
-                    }
-                }
-            }
         }
     }
-
 
 }

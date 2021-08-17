@@ -3,6 +3,7 @@ package com.submission.githubuserapi.ui.follower
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
@@ -14,7 +15,7 @@ import com.submission.githubuserapi.ui.details.DetailsActivity
 import com.submission.githubuserapi.utils.toGone
 import com.submission.githubuserapi.utils.toVisible
 
-class FollowerFragment : BaseFragment(R.layout.fragment_follow) {
+class FollowerFragment : BaseFragment, Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowerViewModel
     private lateinit var binding: FragmentFollowBinding
 
@@ -31,7 +32,7 @@ class FollowerFragment : BaseFragment(R.layout.fragment_follow) {
         binding.progressBar.toVisible()
         viewModel.setFollower(username)
         binding.progressBar.toGone()
-        viewModel.getFollower().observe(viewLifecycleOwner) {
+        viewModel.listUsers.observe(viewLifecycleOwner) {
             if (it != null) {
                 adapter.setList(it)
             }

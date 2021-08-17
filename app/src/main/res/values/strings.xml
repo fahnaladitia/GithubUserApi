@@ -10,4 +10,6 @@
     <string name="user" translatable="false">User</string>
     <string name="submission_2" translatable="false">Submission 2</string>
     <string name="image_splash" translatable="false">Image Splash</string>
+    <string name="final_submission" translatable="false">Final Submission</string>
+    <string name="favorite">Favorite</string>
 </resources>

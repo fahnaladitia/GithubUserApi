@@ -10,29 +10,31 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailsViewModel: ViewModel() {
+class DetailsViewModel : ViewModel() {
 
-    private val dataUser: MutableLiveData<DetailsUserResponse> = MutableLiveData()
+    private var _dataUser: MutableLiveData<DetailsUserResponse> = MutableLiveData()
+    val dataUser: LiveData<DetailsUserResponse> get() = _dataUser
 
     fun setDataUser(username: String) {
         RetrofitServer.apiInstance.getUserDetail(username)
             .enqueue(object : Callback<DetailsUserResponse> {
                 override fun onResponse(
                     call: Call<DetailsUserResponse>,
-                    response: Response<DetailsUserResponse>
+                    response: Response<DetailsUserResponse>,
                 ) {
-                    if(response.isSuccessful) {
-                        dataUser.value = response.body()
+                    if (response.isSuccessful) {
+                        _dataUser.value = response.body()
                     }
                 }
 
                 override fun onFailure(call: Call<DetailsUserResponse>, t: Throwable) {
-                    Log.d("Failure", t.message.toString())
+                    Log.d("$TAG: Failure", t.message.toString())
                 }
             })
     }
 
-    fun getDataUser(): LiveData<DetailsUserResponse> {
-        return dataUser
+
+    companion object {
+        val TAG: String = DetailsViewModel::class.java.simpleName
     }
 }

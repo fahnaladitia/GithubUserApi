@@ -13,7 +13,8 @@ import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
 
-    private val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
+    private val _listUsers: MutableLiveData<List<User>> = MutableLiveData()
+    val listUsers: LiveData<List<User>> get() = _listUsers
 
 
     fun setSearchQuery(query: String) {
@@ -22,23 +23,24 @@ class HomeViewModel : ViewModel() {
             .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
-                    response: Response<UserResponse>
+                    response: Response<UserResponse>,
                 ) {
                     if (response.isSuccessful) {
 
-                        listUsers.value = response.body()?.items
+                        _listUsers.value = response.body()?.items
                     }
                 }
 
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Log.d("Failure", t.message.toString())
+                    Log.d("$TAG: Failure", t.message.toString())
 
                 }
             })
     }
 
-    fun getSearchUsers(): LiveData<ArrayList<User>> {
-        return listUsers
+
+    companion object {
+        val TAG: String = HomeViewModel::class.java.simpleName
     }
 
 

@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_home_to_favoriteActivity"
+            app:destination="@id/favoriteActivity" />
     </fragment>
     <activity
         android:id="@+id/detailsActivity"
@@ -27,5 +30,10 @@
             android:name="user"
             app:argType="com.submission.githubuserapi.data.remote.model.User" />
     </activity>
+    <activity
+        android:id="@+id/favoriteActivity"
+        android:name="com.submission.githubuserapi.ui.favorite.FavoriteActivity"
+        android:label="activity_favorite"
+        tools:layout="@layout/activity_favorite" />
 
 </navigation>

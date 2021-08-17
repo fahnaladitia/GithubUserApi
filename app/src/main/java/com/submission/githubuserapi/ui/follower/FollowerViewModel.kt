@@ -12,29 +12,30 @@ import retrofit2.Response
 
 class FollowerViewModel : ViewModel() {
 
-    private val listUsers: MutableLiveData<ArrayList<User>> = MutableLiveData()
+    private var _listUsers: MutableLiveData<List<User>> = MutableLiveData()
+    val listUsers: LiveData<List<User>> get() = _listUsers
 
     fun setFollower(username: String) {
         RetrofitServer.apiInstance
             .getFollowers(username)
-            .enqueue(object : Callback<ArrayList<User>> {
+            .enqueue(object : Callback<List<User>> {
                 override fun onResponse(
-                    call: Call<ArrayList<User>>,
-                    response: Response<ArrayList<User>>,
+                    call: Call<List<User>>,
+                    response: Response<List<User>>,
                 ) {
                     if (response.isSuccessful) {
-                        listUsers.value = response.body()!!
+                        _listUsers.value = response.body()
                     }
                 }
 
-                override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
-                    Log.d("Failure", t.message.toString())
+                override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                    Log.d("$TAG: Failure", t.message.toString())
                 }
             })
     }
 
-    fun getFollower(): LiveData<ArrayList<User>> {
-        return listUsers
+    companion object {
+        val TAG: String = FollowerViewModel::class.java.simpleName
     }
 
 }

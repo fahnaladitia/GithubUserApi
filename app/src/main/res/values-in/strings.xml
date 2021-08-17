@@ -8,4 +8,5 @@
     <string name="repository">Penyimpanan</string>
     <string name="background">Latar Belakang</string>
     <string name="image_user">Pengguna Gambar</string>
+    <string name="favorite">Favorit</string>
 </resources>

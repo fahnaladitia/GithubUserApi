@@ -37,7 +37,13 @@ class DetailsActivity : AppCompatActivity() {
         if (username != null) {
             viewModel.setDataUser(username)
         }
-        viewModel.getDataUser().observe(this) {
+
+        binding.favorite.setOnClickListener {
+
+
+        }
+
+        viewModel.dataUser.observe(this) {
             if (it != null) {
                 binding.apply {
                     progressBar.toVisible()
@@ -95,7 +101,6 @@ class DetailsActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = title[position]
         }.attach()
-
         binding.toolbar.title = username
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
@@ -16,8 +16,11 @@ android {
         versionCode 1
         versionName "1.0"
 
+        vectorDrawables.useSupportLibrary = true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "GITHUB_API_KEY", github_api_key)
+        buildConfigField("String", "GITHUB_API_LINK", github_api_link)
     }
 
     buildTypes {
@@ -54,16 +57,14 @@ dependencies {
     // Circle Image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // Paging 3
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha03"
-
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-    // Retrofit + GSON
+    // Retrofit + OkHttp3
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
     
     // Glide
     implementation "com.github.bumptech.glide:glide:4.12.0"

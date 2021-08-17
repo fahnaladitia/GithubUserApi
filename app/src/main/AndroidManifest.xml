@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApi">
         <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:exported="true"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
             android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -24,9 +28,7 @@
         <activity
             android:name=".ui.details.DetailsActivity"
             android:parentActivityName=".ui.MainActivity" />
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.submission.githubuserapi.ui.following
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
@@ -14,7 +15,7 @@ import com.submission.githubuserapi.ui.details.DetailsActivity
 import com.submission.githubuserapi.utils.toGone
 import com.submission.githubuserapi.utils.toVisible
 
-class FollowingFragment : BaseFragment(R.layout.fragment_follow) {
+class FollowingFragment : BaseFragment, Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowingViewModel
     private lateinit var binding: FragmentFollowBinding
 
@@ -24,13 +25,14 @@ class FollowingFragment : BaseFragment(R.layout.fragment_follow) {
         val adapter = ListAdapter()
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
             .get(FollowingViewModel::class.java)
-        val username = activity?.intent?.getStringExtra(DetailsActivity.EXTRA_USERNAME).toString()
+        val username =
+            requireActivity().intent.getStringExtra(DetailsActivity.EXTRA_USERNAME).toString()
         setAdapter(adapter)
 
         binding.progressBar.toVisible()
         viewModel.setFollowing(username)
         binding.progressBar.toGone()
-        viewModel.getFollowing().observe(viewLifecycleOwner) {
+        viewModel.listUsers.observe(viewLifecycleOwner) {
             if (it != null) {
                 adapter.setList(it)
             }

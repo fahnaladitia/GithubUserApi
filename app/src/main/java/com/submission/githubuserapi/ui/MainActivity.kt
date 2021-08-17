@@ -1,6 +1,8 @@
 package com.submission.githubuserapi.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -25,7 +27,20 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.findNavController()
         setSupportActionBar(binding.toolbar)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favoriteActivity -> navController.navigate(R.id.action_nav_home_to_favoriteActivity)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -28,12 +28,12 @@ interface GithubApi {
     @Headers("Authorization: token $API_KEY")
     fun getFollowers(
         @Path("username") username: String
-    ): Call<ArrayList<User>>
+    ): Call<List<User>>
 
     @GET("users/{username}/following")
     @Headers("Authorization: token $API_KEY")
     fun getFollowing(
         @Path("username") username: String
-    ): Call<ArrayList<User>>
+    ): Call<List<User>>
 
 }

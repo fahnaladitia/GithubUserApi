@@ -8,4 +8,5 @@
     <string name="repository">Référentiel</string>
     <string name="background">Contexte</string>
     <string name="image_user">Utilisateur de l\'image</string>
+    <string name="favorite">Favori</string>
 </resources>
