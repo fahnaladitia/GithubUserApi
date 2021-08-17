@@ -1,4 +1,4 @@
-package com.submission.githubuserapi.data.remote.api
+package com.submission.githubuserapi.data.source.remote.api
 
 import com.submission.githubuserapi.utils.Constants.BASE_URL
 import okhttp3.OkHttpClient

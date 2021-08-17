@@ -12,9 +12,14 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuserapi.R
+import com.submission.githubuserapi.data.source.local.model.UserEntity
 import com.submission.githubuserapi.databinding.ActivityDetailsBinding
+import com.submission.githubuserapi.ui.ViewModelFactory
 import com.submission.githubuserapi.utils.toGone
 import com.submission.githubuserapi.utils.toVisible
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -31,32 +36,57 @@ class DetailsActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(this,
-            ViewModelProvider.NewInstanceFactory()).get(DetailsViewModel::class.java)
+        viewModel = obtainViewModel(this)
 
         if (username != null) {
             viewModel.setDataUser(username)
         }
 
-        binding.favorite.setOnClickListener {
 
-
-        }
-
-        viewModel.dataUser.observe(this) {
-            if (it != null) {
+        viewModel.dataUser.observe(this) { detailUser ->
+            if (detailUser != null) {
                 binding.apply {
+
+                    var isChecked = false
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val count = viewModel.checkUser(detailUser.id)
+                        if (count > 0) {
+                            favorite.isChecked = true
+                            isChecked = true
+                        } else {
+                            favorite.isChecked = false
+                            isChecked = false
+                        }
+                    }
+
+
+                    favorite.setOnClickListener {
+                        isChecked = !isChecked
+
+                        if (isChecked) {
+                            viewModel.insert(userEntity = UserEntity(
+                                id = detailUser.id,
+                                login = detailUser.login,
+                                avatar_url = detailUser.avatar_url
+                            ))
+                        } else {
+                            viewModel.delete(detailUser.id)
+                        }
+                        favorite.isChecked = isChecked
+                    }
+
+
                     progressBar.toVisible()
-                    tvName.text = it.name
-                    tvUsername.text = it.login
+                    tvName.text = detailUser.name
+                    tvUsername.text = detailUser.login
                     tvFollowers.text = getString(R.string.follower)
                     tvFollowing.text = getString(R.string.following)
                     tvRepo.text = getString(R.string.repository)
-                    tvRepoValue.text = "${it.public_repos}"
-                    tvFollowersValue.text = "${it.followers}"
-                    tvFollowingValue.text = "${it.following}"
+                    tvRepoValue.text = "${detailUser.public_repos}"
+                    tvFollowersValue.text = "${detailUser.followers}"
+                    tvFollowingValue.text = "${detailUser.following}"
                     Glide.with(this@DetailsActivity)
-                        .load(it.avatar_url)
+                        .load(detailUser.avatar_url)
                         .centerCrop()
                         .error(R.drawable.ic_error)
                         .listener(object : RequestListener<Drawable> {
@@ -98,7 +128,8 @@ class DetailsActivity : AppCompatActivity() {
         val title = arrayOf(getString(R.string.follower), getString(R.string.following))
         binding.viewPager.adapter = adapter
 
-        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+        TabLayoutMediator(binding.tabs, binding.viewPager)
+        { tab, position ->
             tab.text = title[position]
         }.attach()
         binding.toolbar.title = username
@@ -107,6 +138,11 @@ class DetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailsViewModel {
+        return ViewModelProvider(this,
+            ViewModelFactory.getInstance(activity.application))[DetailsViewModel::class.java]
     }
 
 

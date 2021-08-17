@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.submission.githubuserapi.R
-import com.submission.githubuserapi.data.remote.model.User
+import com.submission.githubuserapi.data.source.remote.model.User
 import com.submission.githubuserapi.databinding.ItemUserBinding
 import com.submission.githubuserapi.utils.Constants.hasInternetConnection
 import com.submission.githubuserapi.utils.Constants.toast

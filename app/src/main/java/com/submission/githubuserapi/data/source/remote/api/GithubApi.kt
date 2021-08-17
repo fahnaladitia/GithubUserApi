@@ -1,8 +1,8 @@
-package com.submission.githubuserapi.data.remote.api
+package com.submission.githubuserapi.data.source.remote.api
 
-import com.submission.githubuserapi.data.remote.model.DetailsUserResponse
-import com.submission.githubuserapi.data.remote.model.User
-import com.submission.githubuserapi.data.remote.model.UserResponse
+import com.submission.githubuserapi.data.source.remote.model.DetailsUserResponse
+import com.submission.githubuserapi.data.source.remote.model.User
+import com.submission.githubuserapi.data.source.remote.model.UserResponse
 import com.submission.githubuserapi.utils.Constants.API_KEY
 import retrofit2.Call
 import retrofit2.http.GET

@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.submission.githubuserapi.data.remote.api.RetrofitServer
-import com.submission.githubuserapi.data.remote.model.User
-import com.submission.githubuserapi.data.remote.model.UserResponse
+import com.submission.githubuserapi.data.source.remote.api.RetrofitServer
+import com.submission.githubuserapi.data.source.remote.model.User
+import com.submission.githubuserapi.data.source.remote.model.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
-import com.submission.githubuserapi.data.remote.model.User
+import com.submission.githubuserapi.data.source.remote.model.User
 import com.submission.githubuserapi.data.ui.BaseFragment
 import com.submission.githubuserapi.data.ui.ListAdapter
 import com.submission.githubuserapi.databinding.FragmentHomeBinding

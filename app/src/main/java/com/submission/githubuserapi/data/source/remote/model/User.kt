@@ -1,4 +1,4 @@
-package com.submission.githubuserapi.data.remote.model
+package com.submission.githubuserapi.data.source.remote.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

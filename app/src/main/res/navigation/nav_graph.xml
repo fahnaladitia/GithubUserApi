@@ -28,7 +28,7 @@
         tools:layout="@layout/activity_details">
         <argument
             android:name="user"
-            app:argType="com.submission.githubuserapi.data.remote.model.User" />
+            app:argType="com.submission.githubuserapi.data.source.remote.model.User" />
     </activity>
     <activity
         android:id="@+id/favoriteActivity"
