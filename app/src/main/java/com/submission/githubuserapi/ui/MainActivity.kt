@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.favoriteActivity -> navController.navigate(R.id.action_nav_home_to_favoriteActivity)
+            R.id.settingsActivity -> navController.navigate(R.id.action_nav_home_to_settingsActivity)
         }
         return super.onOptionsItemSelected(item)
     }

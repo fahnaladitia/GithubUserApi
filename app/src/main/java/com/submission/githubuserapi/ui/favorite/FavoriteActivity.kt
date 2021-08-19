@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.source.remote.model.User
 import com.submission.githubuserapi.data.ui.ListAdapter
+import com.submission.githubuserapi.data.ui.ViewModelFactory
 import com.submission.githubuserapi.databinding.ActivityFavoriteBinding
-import com.submission.githubuserapi.ui.ViewModelFactory
 import com.submission.githubuserapi.ui.details.DetailsActivity
 
 class FavoriteActivity : AppCompatActivity() {

@@ -12,4 +12,9 @@
     <string name="image_splash" translatable="false">Image Splash</string>
     <string name="final_submission" translatable="false">Final Submission</string>
     <string name="favorite">Favorite</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="setting">Settings</string>
+    <string name="time" translatable="false">09:00</string>
+    <string name="hello">Let\'s find user popular on Github!</string>
+    <string name="title_hello">Hello Friends!</string>
 </resources>

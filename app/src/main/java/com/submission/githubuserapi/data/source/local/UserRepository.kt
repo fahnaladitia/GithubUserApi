@@ -13,13 +13,12 @@ class UserRepository(application: Application) {
         mUserDao = db.userDao()
     }
 
-    suspend fun checkUser(id: Long) = mUserDao.checkUser(id)
-
     fun getAllUser() = mUserDao.getAllUser()
+
+    suspend fun checkUser(id: Long) = mUserDao.checkUser(id)
 
     suspend fun insertFavoriteUser(userEntity: UserEntity) {
         mUserDao.insert(userEntity)
-
     }
 
     suspend fun deleteFavoriteUser(id: Long) {

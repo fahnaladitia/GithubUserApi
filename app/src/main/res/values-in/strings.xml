@@ -9,4 +9,8 @@
     <string name="background">Latar Belakang</string>
     <string name="image_user">Pengguna Gambar</string>
     <string name="favorite">Favorit</string>
+    <string name="setting">Pengaturan</string>
+    <string name="hello">Mari temukan pengguna yang populer di Github!</string>
+    <string name="title_hello">Halo teman teman!</string>
+    <string name="daily_reminder">Pengingat Harian</string>
 </resources>

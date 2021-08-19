@@ -11,6 +11,7 @@ import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.source.remote.model.User
 import com.submission.githubuserapi.data.ui.BaseFragment
 import com.submission.githubuserapi.data.ui.ListAdapter
+import com.submission.githubuserapi.data.ui.ViewModelFactory
 import com.submission.githubuserapi.databinding.FragmentHomeBinding
 import com.submission.githubuserapi.ui.details.DetailsActivity
 import com.submission.githubuserapi.utils.toGone
@@ -31,8 +32,8 @@ class HomeFragment : BaseFragment, Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(HomeViewModel::class.java)
+            ViewModelFactory.getInstance(requireActivity().application)
+        )[HomeViewModel::class.java]
         setAdapter(adapter)
 
         viewModel.setSearchQuery("a")

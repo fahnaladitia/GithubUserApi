@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_nav_home_to_favoriteActivity"
             app:destination="@id/favoriteActivity" />
+        <action
+            android:id="@+id/action_nav_home_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
     </fragment>
     <activity
         android:id="@+id/detailsActivity"
@@ -35,5 +38,9 @@
         android:name="com.submission.githubuserapi.ui.favorite.FavoriteActivity"
         android:label="activity_favorite"
         tools:layout="@layout/activity_favorite" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.submission.githubuserapi.ui.settings.SettingsActivity"
+        android:label="SettingsActivity" />
 
 </navigation>

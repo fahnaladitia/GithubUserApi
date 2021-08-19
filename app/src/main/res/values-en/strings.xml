@@ -9,4 +9,8 @@
     <string name="background">background</string>
     <string name="image_user">Image User</string>
     <string name="favorite">Favorite</string>
+    <string name="setting">Settings</string>
+    <string name="hello">Let\'s find user popular on Github!</string>
+    <string name="title_hello">Hello Friends!</string>
+    <string name="daily_reminder">Daily Reminder</string>
 </resources>

@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.source.local.model.UserEntity
 import com.submission.githubuserapi.databinding.ActivityDetailsBinding
-import com.submission.githubuserapi.ui.ViewModelFactory
+import com.submission.githubuserapi.data.ui.ViewModelFactory
 import com.submission.githubuserapi.utils.toGone
 import com.submission.githubuserapi.utils.toVisible
 import kotlinx.coroutines.CoroutineScope

@@ -10,6 +10,7 @@ import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.source.remote.model.User
 import com.submission.githubuserapi.data.ui.BaseFragment
 import com.submission.githubuserapi.data.ui.ListAdapter
+import com.submission.githubuserapi.data.ui.ViewModelFactory
 import com.submission.githubuserapi.databinding.FragmentFollowBinding
 import com.submission.githubuserapi.ui.details.DetailsActivity
 import com.submission.githubuserapi.utils.toGone
@@ -24,8 +25,8 @@ class FollowerFragment : BaseFragment, Fragment(R.layout.fragment_follow) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFollowBinding.bind(view)
         val adapter = ListAdapter()
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())
-            .get(FollowerViewModel::class.java)
+        viewModel = ViewModelProvider(this,
+            ViewModelFactory.getInstance(requireActivity().application))[FollowerViewModel::class.java]
         val username = requireActivity().intent.getStringExtra(DetailsActivity.EXTRA_USERNAME)!!
         setAdapter(adapter)
 

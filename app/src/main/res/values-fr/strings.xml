@@ -9,4 +9,8 @@
     <string name="background">Contexte</string>
     <string name="image_user">Utilisateur de l\'image</string>
     <string name="favorite">Favori</string>
+    <string name="setting">Paramètres</string>
+    <string name="hello">Trouvons l\'utilisateur populaire sur Github !</string>
+    <string name="title_hello">Bonjour les amis!</string>
+    <string name="daily_reminder">Rappel quotidien</string>
 </resources>
