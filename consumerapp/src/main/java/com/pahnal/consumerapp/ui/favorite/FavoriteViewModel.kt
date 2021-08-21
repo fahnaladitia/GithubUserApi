@@ -9,16 +9,17 @@ import com.pahnal.consumerapp.data.model.User
 import com.pahnal.consumerapp.data.source.UserDataSource
 import kotlinx.coroutines.Dispatchers
 
-class FavoriteViewModel(application: Application) : ViewModel() {
-    private val repository: UserRepository
-    val listUsers: LiveData<List<User>>
+class FavoriteViewModel(private val application: Application) : ViewModel() {
 
-    init {
-        val source = UserDataSource(application.contentResolver)
-        repository = UserRepository(source)
-        listUsers = liveData(Dispatchers.IO) {
+
+    private val repository: UserRepository
+        get() {
+            val source = UserDataSource(application.contentResolver)
+            return UserRepository(source)
+        }
+    val listUsers: LiveData<List<User>>
+        get() = liveData(Dispatchers.IO) {
             emit(repository.getUserList())
         }
-    }
 
 }
