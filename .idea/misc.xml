@@ -17,6 +17,12 @@
         <entry key="..\:/LatihanAndroid/GithubUserApi/app/src/main/res/layout/item_user.xml" value="0.29030797101449274" />
         <entry key="..\:/LatihanAndroid/GithubUserApi/app/src/main/res/menu/home_menu.xml" value="0.22870370370370371" />
         <entry key="..\:/LatihanAndroid/GithubUserApi/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/drawable/ic_error.xml" value="0.3828125" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/drawable/ic_user.xml" value="0.3828125" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/layout/activity_favorite.xml" value="0.36666666666666664" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/layout/fragment_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/LatihanAndroid/GithubUserApi/consumerapp/src/main/res/layout/item_user.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

@@ -1,14 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">consumerapp</string>
     <string name="image_user">image user</string>
     <string name="user_not_found">USER NOT FOUND</string>
     <string name="exp_username">username</string>
     <string name="exp_name">name</string>
     <string name="public_repos">Repository</string>
-    <string name="dummy_value" translatable="false">200</string>
     <string name="followers">Followers</string>
-    <string name="following">Following</string>
-    <string name="dummy_location" translatable="false">Samarinda</string>
-    <string name="dummy_type" translatable="false">User</string>
     <string name="title">Consumer App</string>
+    <string name="following">Following</string>
 </resources>

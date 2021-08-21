@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_user">Utilisateur de l\'image</string>
+    <string name="user_not_found">UTILISATEUR NON TROUVÉ</string>
+    <string name="exp_username">nom d\'utilisateur</string>
+    <string name="exp_name">nom</string>
+    <string name="public_repos">Référentiel</string>
+    <string name="followers">Abonné</string>
+    <string name="title">App grand public</string>
+    <string name="following">Suivant</string>
+</resources>

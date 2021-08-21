@@ -1,16 +1,15 @@
-package com.submission.githubuserapi.utils
+package com.pahnal.consumerapp.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
-import com.submission.githubuserapi.BuildConfig.GITHUB_API_KEY
-import com.submission.githubuserapi.BuildConfig.GITHUB_API_LINK
 
 object Constants {
 
     const val AUTHORITY = "com.submission.githubuserapi"
+    const val SCHEME = "content"
     const val TABLE_NAME = "table_user"
 
     fun toast(context: Context, message: String) {
@@ -44,7 +43,4 @@ object Constants {
         }
         return false
     }
-
-    const val BASE_URL = GITHUB_API_LINK
-    const val API_KEY = GITHUB_API_KEY
 }

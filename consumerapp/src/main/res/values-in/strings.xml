@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_user">Pengguna Gambar</string>
+    <string name="user_not_found">PENGGUNA TIDAK DITEMUKAN</string>
+    <string name="public_repos">Penyimpanan</string>
+    <string name="exp_name">nama</string>
+    <string name="exp_username">nama pengguna</string>
+    <string name="followers">Pengikut</string>
+    <string name="title">App Konsumen</string>
+    <string name="following">Mengikuti</string>
+</resources>

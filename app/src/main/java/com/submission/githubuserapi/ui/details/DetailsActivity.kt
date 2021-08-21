@@ -13,8 +13,8 @@ import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
 import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuserapi.R
 import com.submission.githubuserapi.data.source.local.model.UserEntity
-import com.submission.githubuserapi.databinding.ActivityDetailsBinding
 import com.submission.githubuserapi.data.ui.ViewModelFactory
+import com.submission.githubuserapi.databinding.ActivityDetailsBinding
 import com.submission.githubuserapi.utils.toGone
 import com.submission.githubuserapi.utils.toVisible
 import kotlinx.coroutines.CoroutineScope
@@ -64,11 +64,19 @@ class DetailsActivity : AppCompatActivity() {
                         isChecked = !isChecked
 
                         if (isChecked) {
-                            viewModel.insert(userEntity = UserEntity(
-                                id = detailUser.id,
-                                login = detailUser.login,
-                                avatar_url = detailUser.avatar_url
-                            ))
+                            viewModel.insert(
+                                userEntity = UserEntity(
+                                    id = detailUser.id,
+                                    login = detailUser.login,
+                                    name = detailUser.name,
+                                    avatar_url = detailUser.avatar_url,
+                                    publicRepos = detailUser.public_repos,
+                                    followers = detailUser.followers,
+                                    following = detailUser.following,
+                                    location = detailUser.location,
+                                    type = detailUser.type
+                                )
+                            )
                         } else {
                             viewModel.delete(detailUser.id)
                         }
@@ -82,9 +90,12 @@ class DetailsActivity : AppCompatActivity() {
                     tvFollowers.text = getString(R.string.follower)
                     tvFollowing.text = getString(R.string.following)
                     tvRepo.text = getString(R.string.repository)
-                    tvRepoValue.text = "${detailUser.public_repos}"
-                    tvFollowersValue.text = "${detailUser.followers}"
-                    tvFollowingValue.text = "${detailUser.following}"
+                    tvRepoValue.text =
+                        if (detailUser.public_repos >= 1000) "${detailUser.public_repos / 1000}K" else "${detailUser.public_repos}"
+                    tvFollowersValue.text =
+                        if (detailUser.followers >= 1000) "${detailUser.followers / 1000}K" else "${detailUser.followers}"
+                    tvFollowingValue.text =
+                        if (detailUser.following >= 1000) "${detailUser.following / 1000}K" else "${detailUser.following}"
                     Glide.with(this@DetailsActivity)
                         .load(detailUser.avatar_url)
                         .centerCrop()
@@ -141,8 +152,10 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): DetailsViewModel {
-        return ViewModelProvider(this,
-            ViewModelFactory.getInstance(activity.application))[DetailsViewModel::class.java]
+        return ViewModelProvider(
+            this,
+            ViewModelFactory.getInstance(activity.application)
+        )[DetailsViewModel::class.java]
     }
 
 

@@ -7,5 +7,7 @@ data class DetailsUserResponse(
     val public_repos: Int,
     val following: Int,
     val login: String,
-    var name: String
+    var name: String,
+    var location: String? = null,
+    val type: String
 )
